@@ -18,8 +18,8 @@ for c in classes:
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--images_path', type=str, default='/Users/zhuzhirui/Desktop/BDD100K/image')
-    parser.add_argument('--labels_path', type=str, default='/Users/zhuzhirui/Desktop/BDD100K/label')
+    parser.add_argument('--images_path', type=str, default='***/BDD100K/image')
+    parser.add_argument('--labels_path', type=str, default='***/BDD100K/label')
     return parser.parse_args()
 
 def convert(image_name, label):
