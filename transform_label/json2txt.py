@@ -22,8 +22,8 @@ for c in new_class:
 
 def get_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--images_path', type=str, default='/hy-tmp/BDD100K/image')
-    parser.add_argument('--labels_path', type=str, default='/hy-tmp/BDD100K/label')
+    parser.add_argument('--images_path', type=str, default='/hy-tmp/BDD100K/images')
+    parser.add_argument('--labels_path', type=str, default='/hy-tmp/BDD100K/labels')
     parser.add_argument('--json_path', type=str, default='/hy-tmp')
     return parser.parse_args()
 
