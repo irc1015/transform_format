@@ -62,14 +62,14 @@ if __name__ == '__main__':
             lines.extend(one_line)#merge into lines
             print("label {}".format(label_file))
 
+    if os.path.exists(args.labels_path):
+        shutil.rmtree(args.labels_path)
+    Path(args.labels_path).mkdir(parents=True, exist_ok=False)#save label files in label path
+
     for line in tqdm(lines):
         name = line['name']
         labels = line['labels']
         imagePath = os.path.join(image_Root_Path, name)
-
-        if os.path.exists(args.labels_path):
-            shutil.rmtree(args.labels_path)
-        Path(args.labels_path).mkdir(parents=True, exist_ok=False)#save label files in label path
 
         labelfilename = name[:-4] + '.txt' #label files used in YOLO is .txt format
         labelPath = os.path.join(args.labels_path, labelfilename)
@@ -79,14 +79,13 @@ if __name__ == '__main__':
 
         with open(labelPath, 'w') as file:
             for label in labels:
-                cat = label['category']
-                if cat in car_same_calss:
+                if label['category'] in car_same_calss:
                     label['category'] = 'car'
-                    counter['car'] += 1
+                cat = label['category']
+                if cat in new_class:
+                    counter[cat] += 1
                     file.write(convert(imagePath, label))
-                elif cat == 'person':
-                    counter['person'] += 1
-                    file.write(convert(imagePath, label))
+
         #When a label txt file has been written, mark this image in folder
         image_index = image_name_list.index(name)
         image_name_list[image_index] = 'done'
