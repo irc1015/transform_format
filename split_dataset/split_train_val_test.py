@@ -30,28 +30,28 @@ def handle(opt):
         if os.path.exists(os.path.join(new_path, 'train')):
             shutil.rmtree(os.path.join(new_path, 'train'))
         Path(os.path.join(new_path, 'train')).mkdir(parents=True, exist_ok=False)
-        os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'image'), exist_ok=True)
-        os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'label'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'images'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'labels'), exist_ok=True)
 
         if os.path.exists(os.path.join(new_path, 'val')):
             shutil.rmtree(os.path.join(new_path, 'val'))
         Path(os.path.join(new_path, 'val')).mkdir(parents=True, exist_ok=False)
-        os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'image'), exist_ok=True)
-        os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'label'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'images'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'labels'), exist_ok=True)
 
         if os.path.exists(os.path.join(new_path, 'test')):
             shutil.rmtree(os.path.join(new_path, 'test'))
         Path(os.path.join(new_path, 'test')).mkdir(parents=True, exist_ok=False)
-        os.makedirs(os.path.join(os.path.join(new_path, 'test'), 'image'), exist_ok=True)
-        os.makedirs(os.path.join(os.path.join(new_path, 'test'), 'label'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'test'), 'images'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'test'), 'labels'), exist_ok=True)
 
-        image_path = Path(path + '/image')
+        image_path = Path(path + '/images')
         image = os.listdir(image_path)
         image.sort()
         #print('original images are {}'.format(len(image)))
 
         if have_mask == True:
-            label_path = Path(path + '/label')
+            label_path = Path(path + '/labels')
             label = os.listdir(label_path)
             label.sort()
             #print('original labels are {}'.format(len(label)))
@@ -68,8 +68,8 @@ def handle(opt):
             other_label = label[train_len:]
 
             for i in tqdm(range(train_len)):
-                copy(os.path.join(path + '/image', train_image[i]), os.path.join(new_path + '/train', 'image'))
-                copy(os.path.join(path + '/label', train_label[i]), os.path.join(new_path + '/train', 'label'))
+                copy(os.path.join(path + '/images', train_image[i]), os.path.join(new_path + '/train', 'images'))
+                copy(os.path.join(path + '/labels', train_label[i]), os.path.join(new_path + '/train', 'labels'))
 
             val_len = int(len(other_image)*val_rate)
             val_image = other_image[:val_len]
@@ -79,34 +79,34 @@ def handle(opt):
             test_label = other_label[val_len:]
 
             for i in tqdm(range(val_len)):
-                copy(os.path.join(path + '/image', val_image[i]), os.path.join(new_path + '/val', 'image'))
-                copy(os.path.join(path + '/label', val_label[i]), os.path.join(new_path + '/val', 'label'))
+                copy(os.path.join(path + '/images', val_image[i]), os.path.join(new_path + '/val', 'images'))
+                copy(os.path.join(path + '/labels', val_label[i]), os.path.join(new_path + '/val', 'labels'))
 
 
             for i in tqdm(range(len(test_image))):
-                copy(os.path.join(path + '/image', test_image[i]), os.path.join(new_path + '/test', 'image'))
-                copy(os.path.join(path + '/label', test_label[i]), os.path.join(new_path + '/test', 'label'))
+                copy(os.path.join(path + '/images', test_image[i]), os.path.join(new_path + '/test', 'images'))
+                copy(os.path.join(path + '/labels', test_label[i]), os.path.join(new_path + '/test', 'labels'))
 
     elif mode == 'no_test':
         if os.path.exists(os.path.join(new_path, 'train')):
             shutil.rmtree(os.path.join(new_path, 'train'))
         Path(os.path.join(new_path, 'train')).mkdir(parents=True, exist_ok=False)
-        os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'image'), exist_ok=True)
-        os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'label'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'images'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'labels'), exist_ok=True)
 
         if os.path.exists(os.path.join(new_path, 'val')):
             shutil.rmtree(os.path.join(new_path, 'val'))
         Path(os.path.join(new_path, 'val')).mkdir(parents=True, exist_ok=False)
-        os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'image'), exist_ok=True)
-        os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'label'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'images'), exist_ok=True)
+        os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'labels'), exist_ok=True)
 
-        image_path = Path(path + '/image')
+        image_path = Path(path + '/images')
         image = os.listdir(image_path)
         image.sort()
         print('original images are {}'.format(len(image)))
 
         if have_mask == True:
-            label_path = Path(path + '/label')
+            label_path = Path(path + '/labels')
             label = os.listdir(label_path)
             label.sort()
             print('original labels are {}'.format(len(label)))
@@ -127,14 +127,14 @@ def handle(opt):
             val_label = label[train_len:]
 
             for i in tqdm(range(train_len)):
-                copy(os.path.join(path + '/image', train_image[i]), os.path.join(new_path + '/train', 'image'))
-                copy(os.path.join(path + '/label', train_label[i]), os.path.join(new_path + '/train', 'label'))
+                copy(os.path.join(path + '/images', train_image[i]), os.path.join(new_path + '/train', 'images'))
+                copy(os.path.join(path + '/labels', train_label[i]), os.path.join(new_path + '/train', 'labels'))
 
             val_len = len(val_image)
 
             for i in tqdm(range(val_len)):
-                copy(os.path.join(path + '/image', val_image[i]), os.path.join(new_path + '/val', 'image'))
-                copy(os.path.join(path + '/label', val_label[i]), os.path.join(new_path + '/val', 'label'))
+                copy(os.path.join(path + '/images', val_image[i]), os.path.join(new_path + '/val', 'images'))
+                copy(os.path.join(path + '/labels', val_label[i]), os.path.join(new_path + '/val', 'labels'))
 
 if __name__ == '__main__':
     opt = parse_opt()
