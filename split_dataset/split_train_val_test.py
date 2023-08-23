@@ -27,15 +27,21 @@ def handle(opt):
     if mode == 'have_test':
         val_rate = opt.val_rate
 
-        os.makedirs(os.path.join(new_path, 'train'), exist_ok=True)
+        if os.path.exists(os.path.join(new_path, 'train')):
+            shutil.rmtree(os.path.join(new_path, 'train'))
+        Path(os.path.join(new_path, 'train')).mkdir(parents=True, exist_ok=False)
         os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'image'), exist_ok=True)
         os.makedirs(os.path.join(os.path.join(new_path, 'train'), 'label'), exist_ok=True)
 
-        os.makedirs(os.path.join(new_path, 'val'), exist_ok=True)
+        if os.path.exists(os.path.join(new_path, 'val')):
+            shutil.rmtree(os.path.join(new_path, 'val'))
+        Path(os.path.join(new_path, 'val')).mkdir(parents=True, exist_ok=False)
         os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'image'), exist_ok=True)
         os.makedirs(os.path.join(os.path.join(new_path, 'val'), 'label'), exist_ok=True)
 
-        os.makedirs(os.path.join(new_path, 'test'), exist_ok=True)
+        if os.path.exists(os.path.join(new_path, 'test')):
+            shutil.rmtree(os.path.join(new_path, 'test'))
+        Path(os.path.join(new_path, 'test')).mkdir(parents=True, exist_ok=False)
         os.makedirs(os.path.join(os.path.join(new_path, 'test'), 'image'), exist_ok=True)
         os.makedirs(os.path.join(os.path.join(new_path, 'test'), 'label'), exist_ok=True)
 
