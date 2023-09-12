@@ -14,7 +14,7 @@ def delete_DS(path:str) -> List[int]:
 
 class_names = ['roadnonclean',]
 
-save_path = '/Users/zhuzhirui/Desktop/label'
+save_path = '/Users/zhuzhirui/Desktop/tc/labels'
 if os.path.exists(save_path):
     shutil.rmtree(save_path)
 Path(save_path).mkdir(parents=True, exist_ok=False)
@@ -54,3 +54,17 @@ def dir_xml2txt(path:str):
 
 path = '/Users/zhuzhirui/Desktop/城管项目相关文档/道路不洁'
 dir_xml2txt(path)
+
+images_lst = glob.glob(os.path.join(path, '*.jpg'), recursive=True)
+images_path = '/Users/zhuzhirui/Desktop/tc/images'
+if os.path.exists(images_path):
+    shutil.rmtree(images_path)
+Path(images_path).mkdir(parents=True, exist_ok=False)
+
+for image in images_lst:
+    shutil.copy(image, images_path)
+
+end_img = os.listdir(os.path.join('/Users/zhuzhirui/Desktop/tc', 'images'))
+end_lab = os.listdir(os.path.join('/Users/zhuzhirui/Desktop/tc', 'labels'))
+print('images: ' + str(len(end_img)))
+print('labels: ' + str(len(end_lab)))
