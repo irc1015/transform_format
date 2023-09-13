@@ -47,12 +47,20 @@ def handle(opt):
 
         image_path = Path(path + '/images')
         image = os.listdir(image_path)
+        if '.DS_Store' in image:
+                image.remove('.DS_Store')
+        if '.ipynb_checkpoints' in image:
+                image.remove('.ipynb_checkpoints')
         image.sort()
         #print('original images are {}'.format(len(image)))
 
         if have_mask == True:
             label_path = Path(path + '/labels')
             label = os.listdir(label_path)
+            if '.DS_Store' in label:
+                label.remove('.DS_Store')
+            if '.ipynb_checkpoints' in label:
+                label.remove('.ipynb_checkpoints')
             label.sort()
             #print('original labels are {}'.format(len(label)))
 
@@ -102,12 +110,20 @@ def handle(opt):
 
         image_path = Path(path + '/images')
         image = os.listdir(image_path)
+        if '.DS_Store' in image:
+                image.remove('.DS_Store')
+        if '.ipynb_checkpoints' in image:
+                image.remove('.ipynb_checkpoints')
         image.sort()
         print('original images are {}'.format(len(image)))
 
         if have_mask == True:
             label_path = Path(path + '/labels')
             label = os.listdir(label_path)
+            if '.DS_Store' in label:
+                label.remove('.DS_Store')
+            if '.ipynb_checkpoints' in label:
+                label.remove('.ipynb_checkpoints')
             label.sort()
             print('original labels are {}'.format(len(label)))
 
